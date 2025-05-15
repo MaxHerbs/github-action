@@ -20,8 +20,6 @@ FROM alpine:3.21.3 as runtime
 WORKDIR /
 
 ENV KUBECONFIG="/kubeconfig.yaml"
-ENV PATH="/:$PATH"
-
 COPY kubeconfig.yaml .
 
 COPY --from=build /app/argo /bin/
