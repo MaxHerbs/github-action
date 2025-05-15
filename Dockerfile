@@ -1,11 +1,29 @@
-# Set the base image to use for subsequent instructions
-FROM alpine:3.21
+FROM ubuntu:latest as build
 
-# Set the working directory inside the container
-WORKDIR /usr/src
+RUN apt update && apt install curl gzip -y
 
-# Copy any source file(s) required for the action
+WORKDIR /app
+
+ENV PATH="/app:$PATH"
+ENV KUBECONFIG="/app/kubeconfig.yaml"
+
+COPY kubeconfig.yaml .
+
+COPY install-argo.sh .
+RUN bash ./install-argo.sh
+
+COPY install-helm.sh .
+RUN bash ./install-helm.sh
+
+
+FROM alpine:3.21.3 as runtime
+WORKDIR /
+
+ENV PATH="/:$PATH"
+
+COPY --from=build /app/argo /bin/
+COPY --from=build /app/helm /bin/
+
 COPY entrypoint.sh .
 
-# Configure the container to be run as an executable
-ENTRYPOINT ["/usr/src/entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]

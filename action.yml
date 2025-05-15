@@ -1,21 +1,18 @@
-name: Hello, World!
-description: Greet someone and record the time
+name: Lint Argo Workflows
+description: Lint Argo Workflows
 author: GitHub Actions
 
-# Define your inputs here.
 inputs:
-  who-to-greet:
-    description: Who to greet
-    required: true
-    default: World
-
-# Define your outputs here.
-outputs:
-  time:
-    description: The time we greeted you
+  manifests:
+    description: Path to raw WorkflowTemplates manifests
+    required: false
+  charts:
+    description: Path to helm-based WorkflowTemplates
+    required: false
 
 runs:
   using: docker
   image: Dockerfile
   env:
-    INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
+    MANIFEST_PATH: ${{ inputs.manifests }}
+    CHARTS_PATH: ${{ inputs.charts }}
