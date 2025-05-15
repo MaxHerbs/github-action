@@ -14,5 +14,5 @@ runs:
   using: docker
   image: Dockerfile
   env:
-    MANIFEST_PATH: ${{ inputs.manifests }}
-    CHARTS_PATH: ${{ inputs.charts }}
+    MANIFEST: ${{ inputs.manifests }}
+    CHARTS: ${{ inputs.charts }}

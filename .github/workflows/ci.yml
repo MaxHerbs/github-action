@@ -49,12 +49,12 @@ jobs:
       - name: Run the Container
         id: run
         env:
-          INPUT_MANIFESTS_PATH: ""
-          INPUT_CHARTS_PATH: ""
+          INPUT_MANIFESTS: ""
+          INPUT_CHARTS: ""
         run: |
           docker run \
-            --env MANFESTS="${{ env.INPUT_MANIFESTS_PATH }}" \
-            --env CHARTS="${{ env.INPUT_CHARTS_PATH }}" \
+            --env MANFESTS="${{ env.INPUT_MANIFESTS }}" \
+            --env CHARTS="${{ env.INPUT_CHARTS }}" \
             -v .:/workspace \
             --rm ${{ env.TEST_TAG }}
 
