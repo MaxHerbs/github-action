@@ -26,4 +26,4 @@ COPY --from=build /app/helm /bin/
 
 COPY entrypoint.sh .
 
-ENTRYPOINT ["/app/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
