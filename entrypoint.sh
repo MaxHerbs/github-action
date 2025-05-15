@@ -3,5 +3,8 @@
 # Use INPUT_<INPUT_NAME> to get the value of an input
 set -x
 printenv
+ls
+ls /
+ls /workspace
 
 exit 0
