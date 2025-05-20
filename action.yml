@@ -6,9 +6,11 @@ inputs:
   base_path:
     description: The path to the root of the repository. You are unlikely to need to change this in the action.
     required: false
+    default: /github/workspace
   config_file:
     description: The name of the config file. Defaults to `.workflows-lint.yaml`
     required: false
+    default: .workflows-lint.yaml
 
 runs:
   using: docker
