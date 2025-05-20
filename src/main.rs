@@ -20,7 +20,7 @@ enum Cli {
 #[derive(Debug, Parser)]
 struct LintArgs {
     /// The base path to the checked-out repo.
-    #[arg(long, env="BASE_PATH", default_value = "/github/workspace")]
+    #[arg(long, env="BASE_PATH", default_value = ".")]
     base_path: PathBuf,
 
     /// Location of the workflows-lint config file - relative to the base_path
